@@ -9,3 +9,6 @@ dependencies = [
     "pyjwt>=2.12.1",
     "sqlmodel>=0.0.38",
 ]
+
+[tool.fastapi]
+entrypoint = "main:app"
