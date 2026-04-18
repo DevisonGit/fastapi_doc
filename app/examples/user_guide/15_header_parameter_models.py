@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import Cookie, FastAPI, Header
+from fastapi import FastAPI, Header
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -28,7 +28,6 @@ class CommonHeadersForbid(BaseModel):
 @app.get("/items/")
 async def read_items(headers: Annotated[CommonHeaders, Header()]):
     return headers
-
 
 
 @app.get("/items/forbid")

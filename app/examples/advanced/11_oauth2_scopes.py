@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
-import jwt 
+import jwt
 from fastapi import Depends, FastAPI, HTTPException, Security, status
-from fastapi.security import(
+from fastapi.security import (
     OAuth2PasswordBearer,
     OAuth2PasswordRequestForm,
     SecurityScopes,
@@ -62,7 +62,7 @@ DUMMY_HASH = password_hash.hash('dummypassword')
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl='token',
-    scopes={'me': 'Read information aabout the current user.', 
+    scopes={'me': 'Read information aabout the current user.',
             'items': 'Read items'
     }
 )
@@ -80,10 +80,10 @@ def get_password_hash(password):
 
 
 def get_user(db, username: str):
-    if username in db: 
+    if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
-    
+
 
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
@@ -93,6 +93,7 @@ def authenticate_user(fake_db, username: str, password: str):
     if not verify_password(password, user.hashed_password):
         return False
     return user
+
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
@@ -127,7 +128,7 @@ async def get_current_user(
         token_data = TokenData(scopes=token_scopes, username=username)
     except (InvalidTokenError, ValidationError):
         raise credentials_exception
-    user =  get_user(fake_users_db, username=token_data.username)
+    user = get_user(fake_users_db, username=token_data.username)
     if user is None:
         raise credentials_exception
     for scope in security_scopes.scopes:
@@ -169,7 +170,7 @@ async def login_for_access_token(
         expires_delta=access_token_expires,
     )
     return Token(access_token=access_token, token_type='bearer')
-    
+
 
 @app.get('/users/me/')
 async def read_users_me(

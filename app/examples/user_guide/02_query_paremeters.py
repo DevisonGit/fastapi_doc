@@ -13,13 +13,14 @@ app = FastAPI()
 
 fake_items_db = [{"items_name": "Foo"}, {"items_name": "Bar"}, {"items_name": "Baz"}]
 
+
 # Query parameters
 @app.get("/items/")
 async def read_item(skip: int = 0, limit: int = 20):
     return fake_items_db[skip: skip + limit]
 
 
-# Query Optional parameters 
+# Query Optional parameters
 @app.get("/items/{item_id}")
 async def read_item(item_id: str, q: str | None = None):
     if q:

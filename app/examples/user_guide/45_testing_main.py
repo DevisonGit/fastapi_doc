@@ -3,7 +3,6 @@ from typing import Annotated
 from fastapi import FastAPI, Header, HTTPException, status
 from pydantic import BaseModel
 
-
 app = FastAPI()
 
 fake_secret_token = "coneofsilence"

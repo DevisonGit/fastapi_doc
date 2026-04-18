@@ -15,7 +15,7 @@ data = {
 
 # Query Additional validation
 @app.get("/items/")
-async def read_item(q: Annotated[str | None, Query( max_length=50)] = None):
+async def read_item(q: Annotated[str | None, Query(max_length=50)] = None):
     result = {"items": [{"item_id": "foo"}, {"item_id": "bar"}]}
     if q:
         result.update({"q": q})
@@ -48,7 +48,7 @@ async def read_item(
 
 # Default values
 @app.get("/items/")
-async def read_item(q: Annotated[str, Query(min_length=3) ] = "fixedquery"):
+async def read_item(q: Annotated[str, Query(min_length=3)] = "fixedquery"):
     result = {"items": [{"item_id": "foo"}, {"item_id": "bar"}]}
     if q:
         result.update({"q": q})
@@ -143,7 +143,7 @@ async def read_items(
         return {"hidden_query": hidden_query}
     else:
         return {"hidden_query": "Not found"}
-    
+
 
 # Custom validation
 def check_valid_id(id: str):

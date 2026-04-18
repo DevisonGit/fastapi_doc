@@ -4,9 +4,10 @@ from fastapi import FastAPI, Header
 
 app = FastAPI()
 
+
 # Declare header parameters
 @app.get("/items")
-async def read_items(user_agent: Annotated[str | None, Header()]= None):
+async def read_items(user_agent: Annotated[str | None, Header()] = None):
     return {"user_agent": user_agent}
 
 
@@ -17,7 +18,7 @@ async def read_items(
         str | None, Header(convert_underscores=False)
     ] = None
 ):
-    return {"strange_header": strange_header }
+    return {"strange_header": strange_header}
 
 
 # Duplicate headers

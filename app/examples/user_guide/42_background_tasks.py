@@ -35,8 +35,8 @@ def get_query(background_tasks: BackgroundTasks, q: str | None = None):
 
 @app.post('/send-notification/{email}')
 async def senf_notification(
-    email: str, 
-    background_taks: BackgroundTasks, 
+    email: str,
+    background_taks: BackgroundTasks,
     q: Annotated[str, Depends(get_query)]
 ):
     message = f'message to {email}\n'

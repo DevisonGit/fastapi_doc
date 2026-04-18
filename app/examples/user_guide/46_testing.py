@@ -1,10 +1,10 @@
 from fastapi import status
 from fastapi.testclient import TestClient
 
-
 from ..main import app
 
 client = TestClient(app)
+
 
 def test_read_item():
     response = client.get(
@@ -16,7 +16,8 @@ def test_read_item():
     assert response.json() == {
         "id": "foo", "title": "Foo", "description": "There goes my hero"
         }
-    
+
+
 def test_read_item_bad_token():
     response = client.get('/items/foo', headers={'x-token': 'heilhydra'})
     assert response.status_code == status.HTTP_400_BAD_REQUEST
@@ -34,16 +35,16 @@ def test_create_item():
         '/items/',
         headers={'X-token': 'coneofsilence'},
         json={
-            "id": "foobar", 
-            "title": "Foo Bar", 
+            "id": "foobar",
+            "title": "Foo Bar",
             "description": "The Foo Barters"
         }
     )
 
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
-            "id": "foobar", 
-            "title": "Foo Bar", 
+            "id": "foobar",
+            "title": "Foo Bar",
             "description": "The Foo Barters"
         }
 
@@ -53,8 +54,8 @@ def test_create_item_bad_token():
         '/items/',
         headers={'X-token': 'heilhydra'},
         json={
-            "id": "foobar", 
-            "title": "Foo Bar", 
+            "id": "foobar",
+            "title": "Foo Bar",
             "description": "The Foo Barters"
         }
     )
@@ -67,11 +68,10 @@ def test_create_existing_item():
         '/items/',
         headers={'X-token': 'coneofsilence'},
         json={
-            "id": "foo", 
-            "title": "Foo", 
+            "id": "foo",
+            "title": "Foo",
             "description": "There goes my hero"
         }
     )
     assert response.status_code == status.HTTP_409_CONFLICT
     assert response.json() == {'detail': 'Item already exists'}
-    

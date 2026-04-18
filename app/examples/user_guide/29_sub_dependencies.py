@@ -4,8 +4,9 @@ from fastapi import Cookie, Depends, FastAPI
 
 app = FastAPI()
 
+
 # Dependable
-def query_extractor(q:str | None = None):
+def query_extractor(q: str | None = None):
     return q
 
 
@@ -13,7 +14,7 @@ def query_or_cookie_extractor(
         q: Annotated[str, Depends(query_extractor)],
         last_query: Annotated[str | None, Cookie()] = None
 ):
-    if not q: 
+    if not q:
         return last_query
     return q
 

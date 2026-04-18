@@ -4,10 +4,10 @@ from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
 )
-from pydantic import BaseModel
 from fastapi.exceptions import RequestValidationError
-from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
+from pydantic import BaseModel
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 app = FastAPI()
 
@@ -98,6 +98,7 @@ class Item(BaseModel):
 @app.post("/items/")
 async def create_item(item: Item):
     return item
+
 
 # Reuse FastAPI exception handlers
 @app.exception_handler(StarletteHTTPException)

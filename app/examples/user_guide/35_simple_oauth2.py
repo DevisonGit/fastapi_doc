@@ -28,7 +28,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 class User(BaseModel):
     username: str
-    email: str | None  = None
+    email: str | None = None
     full_name: str | None = None
     disabled: bool | None = None
 
@@ -45,7 +45,7 @@ def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
         return UserDB(**user_dict)
-    
+
 
 def fake_decode_token(token):
     user = get_user(fake_users_db, token)
@@ -89,7 +89,7 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect username or password"
         )
-    
+
     return {"access_token": user.username, "token_type": "bearer"}
 
 

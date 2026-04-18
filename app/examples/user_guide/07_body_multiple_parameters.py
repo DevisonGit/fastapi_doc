@@ -1,8 +1,7 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Path, Body
+from fastapi import Body, FastAPI, Path
 from pydantic import BaseModel
-
 
 app = FastAPI()
 
@@ -29,8 +28,7 @@ async def update_item(
     return results
 
 
-
-# Multiple body parameters 
+# Multiple body parameters
 class Item(BaseModel):
     name: str
     description: str | None = None

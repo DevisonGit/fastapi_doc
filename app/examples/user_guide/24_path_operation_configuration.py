@@ -55,7 +55,7 @@ async def get_users() -> list:
 @app.post(
     "/items/",
     summary="Create an Item",
-    description="Create an item with all the information " \
+    description="Create an item with all the information "
     "name, description, price, tax and a set of unique tags"
 )
 async def create_item(item: Item) -> Item:
@@ -79,7 +79,7 @@ async def create_item(item: Item) -> Item:
 
 # Response description
 @app.post(
-        "/items/", 
+        "/items/",
         summary="Create an Item",
         response_description="The created item"
 )

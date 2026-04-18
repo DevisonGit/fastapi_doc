@@ -27,6 +27,7 @@ class UserInDB(BaseModel):
 def fake_password_hasher(raw_password: str):
     return "supersecret" + raw_password
 
+
 def fake_save_user(user_in: UserIn):
     hashed_password = fake_password_hasher(user_in.password)
     user_in_db = UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
@@ -38,6 +39,7 @@ def fake_save_user(user_in: UserIn):
 async def create_user(user_in: UserIn):
     user_saved = fake_save_user(user_in)
     return user_saved
+
 
 # Reduce duplication
 class UserBase(BaseModel):
@@ -61,6 +63,7 @@ class UserInDB(UserBase):
 def fake_password_hasher(raw_password: str):
     return "supersecret" + raw_password
 
+
 def fake_save_user(user_in: UserIn):
     hashed_password = fake_password_hasher(user_in.password)
     user_in_db = UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
@@ -74,7 +77,7 @@ async def create_user(user_in: UserIn):
     return user_saved
 
 
-# Union 
+# Union
 class BaseItem(BaseModel):
     description: str
     type: str
@@ -124,4 +127,4 @@ async def read_items():
 # Response with arbitrary dict
 @app.get("/keyword-weights/", response_model=dict[str, float])
 async def read_keyword_weights():
-    return {"foo": 42.5, "bar":45.0}
+    return {"foo": 42.5, "bar": 45.0}

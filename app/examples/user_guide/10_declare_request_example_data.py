@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Body
+from fastapi import Body, FastAPI
 from pydantic import BaseModel, Field
 
 app = FastAPI()
@@ -14,7 +14,7 @@ class Item(BaseModel):
     tax: float | None = None
 
     model_config = {
-        "json_schema_extra":{
+        "json_schema_extra": {
             "examples": [
                 {
                     "name": "Foo",
@@ -112,7 +112,7 @@ async def update_item(
                         "tax": 3.2
                     }
                 },
-                "converted":{
+                "converted": {
                     "summary": "An example with converted data",
                     "description": "FastAPI can convert price 'strings' to actual 'numbers' automatically",
                     "value": {

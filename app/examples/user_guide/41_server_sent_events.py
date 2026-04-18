@@ -16,7 +16,7 @@ class Item(BaseModel):
 items = [
     Item(name="Plumbus", description="A multi-purpose household device."),
     Item(name="Portal Gun", description="A portal opening device."),
-    Item(name="Meeseeks Box", description="A box that summons a Meeseeks."),    
+    Item(name="Meeseeks Box", description="A box that summons a Meeseeks."),
 ]
 
 
@@ -26,7 +26,7 @@ async def sse_items() -> AsyncIterable[Item]:
         yield item
 
 
-# no-async 
+# no-async
 @app.get('/items/stream-no-async', response_class=EventSourceResponse)
 def sse_items_no_async() -> Iterable[Item]:
     for item in items:
@@ -98,4 +98,3 @@ async def stream_chat(prompt: Prompt) -> AsyncIterable[ServerSentEvent]:
     for word in words:
         yield ServerSentEvent(data=word, event='token')
     yield ServerSentEvent(raw_data='[DONE]', event='done')
-    

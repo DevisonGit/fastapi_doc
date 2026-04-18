@@ -14,7 +14,7 @@ class Item(BaseModel):
      price: float | None = Field(gt=0, title="The price must be greater than zero")
      tax: float | None = None
 
-    
+
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Annotated[Item, Body(embed=True)]):
      return {"item_id": item_id, "item": item}

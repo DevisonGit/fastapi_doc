@@ -11,7 +11,7 @@ async def verify_token(x_token: Annotated[str, Header()]):
 async def verify_key(x_key: Annotated[str, Header()]):
     if x_key != "fake-super-secret-key":
         raise HTTPException(status_code=400, detail="X-Key header invalid")
-    
+
 
 app = FastAPI(dependencies=[Depends(verify_token), Depends(verify_key)])
 

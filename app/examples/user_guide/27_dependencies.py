@@ -4,6 +4,7 @@ from fastapi import Depends, FastAPI
 
 app = FastAPI()
 
+
 # Dependency injection
 async def common_parameters(
         q: str | None = None, skip: int = 0, limit: int = 100
@@ -23,7 +24,7 @@ async def read_users(commons: Annotated[dict, Depends(common_parameters)]):
 
 # sharing Annotated dependencies
 async def common_parameters(
-        q: str | None = None, skip: int = 0,  limit: int = 100
+        q: str | None = None, skip: int = 0, limit: int = 100
 ):
     return {"q": q, 'skip': skip, 'limit': limit}
 

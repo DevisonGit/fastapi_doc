@@ -1,4 +1,5 @@
 from typing import Annotated
+
 from fastapi import Depends, FastAPI
 
 app = FastAPI()
@@ -15,7 +16,7 @@ class CommonQueryParams:
         self.q = q
         self.skip = skip
         self.limit = limit
-        
+
 
 @app.get("/items/")
 async def read_items(

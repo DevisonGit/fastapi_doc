@@ -20,7 +20,7 @@ def get_username():
         yield "Rick"
     except OwnerError as e:
         raise HTTPException(status_code=400, detail=f"Owner error: {e}")
-    
+
 
 @app.get("/items/{item_id}")
 def get_item(item_id: str, username: Annotated[str, Depends(get_username)]):

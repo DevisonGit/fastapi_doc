@@ -22,6 +22,7 @@ async def create_item(item: Item):
         item_dict.update({"price_with_tax": price_with_tax})
     return item_dict
 
+
 # Request Body + Path Parameters
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Item):

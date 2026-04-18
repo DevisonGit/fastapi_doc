@@ -1,9 +1,15 @@
 from typing import Any
-import anyio
 
+import anyio
 import orjson
 from fastapi import FastAPI, Response
-from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, RedirectResponse, StreamingResponse
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+    PlainTextResponse,
+    RedirectResponse,
+    StreamingResponse,
+)
 
 app = FastAPI()
 
@@ -11,7 +17,7 @@ app = FastAPI()
 # HTML Response
 @app.get('/items', response_class=HTMLResponse)
 async def read_items():
-    return  """
+    return """
     <html>
         <head>
             <title>Some HTML in here</title>
@@ -128,7 +134,7 @@ class CustomORJSONResponse(Response):
     def render(self, content: Any) -> bytes:
         assert orjson is not None, 'orjson must be installed'
         return orjson.dumps(content, option=orjson.OPT_INDENT_2)
-    
+
 
 @app.get('/', response_class=CustomORJSONResponse)
 async def main():

@@ -1,9 +1,9 @@
-from typing import Annotated
 
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
 
 app = FastAPI()
+
 
 # list fields
 class Item(BaseModel):
@@ -37,6 +37,7 @@ class Image(BaseModel):
     url: str
     name: str
 
+
 class Item(BaseModel):
     name: str
     description: str | None = None
@@ -55,7 +56,7 @@ class Image(BaseModel):
 class Item(BaseModel):
     name: str
     description: str | None = None
-    price: float 
+    price: float
     tax: float | None = None
     tags: set[str] = set()
     image: Image | None = None
@@ -65,6 +66,7 @@ class Item(BaseModel):
 class Image(BaseModel):
     url: HttpUrl
     name: str
+
 
 class Item(BaseModel):
     name: str
@@ -111,6 +113,7 @@ async def update_item(item_id: int, item: Item):
 @app.post("/offers/")
 async def create_offer(offer: Offer):
     return offer
+
 
 @app.post("/images/multiple/")
 async def create_multiple_images(images: list[Image]):

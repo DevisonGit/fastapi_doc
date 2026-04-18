@@ -1,7 +1,6 @@
 import yaml
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.routing import APIRoute
-
 from pydantic import BaseModel, ValidationError
 
 app = FastAPI()
@@ -47,7 +46,7 @@ class Item(BaseModel):
     price: float
     tax: float | None = None
     tags: set[str] = set()
-    
+
 
 @app.post('/items/', summary='create an Item')
 async def read_items(item: Item) -> Item:

@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 items = {
-    "foo": {"name": "Fighters", "size": 6}, 
+    "foo": {"name": "Fighters", "size": 6},
     "bar": {"name": "Tenders", "size": 3}
 }
 
@@ -27,7 +27,6 @@ async def upsert_item(
         item = {'name': name, 'size': size}
         items[item_id] = item
         return JSONResponse(
-            status_code=status.HTTP_201_CREATED, 
+            status_code=status.HTTP_201_CREATED,
             content=item
         )
-    

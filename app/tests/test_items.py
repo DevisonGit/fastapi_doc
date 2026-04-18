@@ -8,14 +8,14 @@ client = TestClient(app)
 
 def test_read_items():
     response = client.get(
-        '/items/?token=jessica', 
+        '/items/?token=jessica',
         headers={'X-token': 'fake-super-secret-token'}
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         "plumbus": {"name": "Plumbus"}, "gun": {"name": "Portal Gun"}
         }
-    
+
 
 def test_read_items_invalid_token():
     response = client.get(
@@ -55,7 +55,7 @@ def test_read_item():
     item = 'plumbus'
     response = client.get(
         f'/items/{item}?token=jessica',
-        headers={'X-token': 'fake-super-secret-token'}                          
+        headers={'X-token': 'fake-super-secret-token'}
     )
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == {'name': 'Plumbus', 'item_id': item}

@@ -5,7 +5,7 @@ app = FastAPI()
 
 
 @app.get('/headers-and-object/')
-async def  get_headers(response: Response):
+async def get_headers(response: Response):
     response.headers['X-Cat-Dog'] = 'Alone in the world'
     return {'message': 'hello world'}
 
@@ -14,4 +14,4 @@ async def  get_headers(response: Response):
 def get_headers():
     content = {'message': 'Hello world'}
     headers = {'X-cat-dog': 'alone in the world', 'Content-language': 'en-US'}
-    return JSONResponse(content=content,headers=headers)
+    return JSONResponse(content=content, headers=headers)

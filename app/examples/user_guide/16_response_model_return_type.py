@@ -14,6 +14,7 @@ class Item(BaseModel):
     tax: float | None = None
     tags: list[str] = []
 
+
 # Return type
 @app.post("/items/type")
 async def create_item(item: Item) -> Item:
@@ -129,7 +130,8 @@ items = {
     "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
 }
 
-@app.get("/items/{item_id}", response_model= Item, response_model_exclude_unset=True)
+
+@app.get("/items/{item_id}", response_model=Item, response_model_exclude_unset=True)
 async def get_items(item_id: str):
     return items[item_id]
 

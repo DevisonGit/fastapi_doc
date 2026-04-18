@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 
 class Item(BaseModel):
-    title: str 
+    title: str
     timestamp: datetime
     description: str | None = None
 

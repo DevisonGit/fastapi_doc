@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 
-
 # jsonable_encoder
 fake_db = {}
 app = FastAPI()

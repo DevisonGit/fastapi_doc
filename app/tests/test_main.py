@@ -1,7 +1,6 @@
 from fastapi import status
 from fastapi.testclient import TestClient
 
-
 from ..main import app
 
 client = TestClient(app)
@@ -22,4 +21,3 @@ def test_read_main_invalid_token():
 def test_read_main_no_token():
     response = client.get('/')
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
-
