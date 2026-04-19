@@ -70,7 +70,7 @@ async def read_items():
     return [{'item_id': 'portal-gun'}]
 
 
-# Custon OpenAPI path operation schema
+# Custom OpenAPI path operation schema
 def magic_data_reader(raw_body: bytes):
     return {
         "size": len(raw_body),
@@ -109,7 +109,7 @@ async def create_item(request: Request):
     return data
 
 
-# Custon OpenAPI content type
+# Custom OpenAPI content type
 class Item(BaseModel):
     name: str
     tags: list[str]

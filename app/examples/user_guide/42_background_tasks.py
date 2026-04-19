@@ -13,8 +13,8 @@ def write_notification(email: str, message=''):
 
 
 @app.post('/send-notification/{email}')
-async def send_notification(email: str, backgound_tasks: BackgroundTasks):
-    backgound_tasks.add_task(
+async def send_notification(email: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(
         write_notification, email, message='some notification'
     )
     return {'message': 'notification sent in the background'}
@@ -36,9 +36,9 @@ def get_query(background_tasks: BackgroundTasks, q: str | None = None):
 @app.post('/send-notification/{email}')
 async def senf_notification(
     email: str,
-    background_taks: BackgroundTasks,
+    background_task: BackgroundTasks,
     q: Annotated[str, Depends(get_query)]
 ):
     message = f'message to {email}\n'
-    background_taks.add_task(write_log, message)
+    background_task.add_task(write_log, message)
     return {'message': 'message sent'}

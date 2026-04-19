@@ -15,7 +15,7 @@ class Message(BaseModel):
 app = FastAPI()
 
 
-# aditional response with model
+# additional response with model
 @app.get(
     '/items/{item_id}',
     response_model=Item,
@@ -27,7 +27,7 @@ async def read_item(item_id: str):
     return JSONResponse(status_code=404, content={'message': 'Item not found'})
 
 
-# aditional media types for the main response
+# additional media types for the main response
 @app.get(
     '/items/{item_id}',
     response_model=Item,

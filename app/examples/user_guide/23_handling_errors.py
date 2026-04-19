@@ -40,7 +40,7 @@ async def read_item(item_id: str):
     return {"item": items[item_id]}
 
 
-# Custon exception handlers
+# Custom exception handlers
 @app.exception_handler(UnicornException)
 async def unicor_exception_handler(request: Request, exc: UnicornException):
     return JSONResponse(
@@ -81,7 +81,7 @@ async def read_item(item_id: int):
 
 # use RequestValidationError
 @app.exception_handler(RequestValidationError)
-async def validation_exception_hendler(
+async def validation_exception_handler(
     request: Request, exc: RequestValidationError
 ):
     return JSONResponse(

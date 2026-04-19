@@ -11,7 +11,7 @@ async def create_file(file: Annotated[bytes, File()]):
     return {"file_size": len(file)}
 
 
-# uploadfile atributes -> filename, content_type, file
+# uploadfile attributes -> filename, content_type, file
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
     return {"filename": file.filename}

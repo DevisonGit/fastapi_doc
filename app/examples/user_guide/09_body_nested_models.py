@@ -94,7 +94,7 @@ class Item(BaseModel):
 
 class Offer(BaseModel):
     name: str
-    descripton: str | None = None
+    description: str | None = None
     price: float
     items: list[Item]
 

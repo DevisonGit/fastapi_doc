@@ -9,7 +9,7 @@ app = FastAPI()
 class Item(BaseModel):
      name: str
      description: str | None = Field(
-          default=None, title="The descripition of the item", max_length=300,
+          default=None, title="The description of the item", max_length=300,
      )
      price: float | None = Field(gt=0, title="The price must be greater than zero")
      tax: float | None = None

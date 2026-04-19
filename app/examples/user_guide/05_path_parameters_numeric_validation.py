@@ -24,7 +24,7 @@ async def read_items(
 # Number validations: greater than and less than or equal
 @app.get("/items/{item_id}")
 async def read_items(
-    item_id: Annotated[float, Path(title="The ID of ther item to get", gt=0, le=1000)]
+    item_id: Annotated[float, Path(title="The ID of their item to get", gt=0, le=1000)]
 ):
     return {"item_id": item_id}
 

@@ -62,8 +62,8 @@ async def stream_story_bytes() -> AsyncIterable[bytes]:
 @app.get('/image/stream', response_class=PNGStreamingResponse)
 async def stream_image() -> AsyncIterable[bytes]:
     with read_image() as image_file:
-        for chunck in image_file:
-            yield chunck
+        for chunk in image_file:
+            yield chunk
 
 
 @app.get('/image/stream-no-async', response_class=PNGStreamingResponse)
