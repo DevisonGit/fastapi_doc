@@ -1,16 +1,22 @@
-import pytest
-from httpx import ASGITransport, AsyncClient
-from fastapi import status
+from fastapi.testclient import TestClient
 
-from ..main import app
+from ..config_v2 import Settings
+from ..main import app, get_settings
+
+client = TestClient(app)
 
 
-@pytest.mark.anyio
-async def test_root():
-    async with AsyncClient(
-        transport=ASGITransport(app=app), base_url="http://test"
-    ) as ac:
-        response = await ac.get('/')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.json() == {'message': 'tomato'}
-    
+def get_settings_override():
+    return Settings(admin_email='testing_admin@example.com')
+
+app.dependency_overrides[get_settings] = get_settings_override
+
+
+def test_app():
+    response = client.get('/info')
+    data  = response.json()
+    assert data == {
+        "app_name": "Awesome API",
+        "admin_email": "testing_admin@example.com",
+        "items_per_user": 50,
+    }
